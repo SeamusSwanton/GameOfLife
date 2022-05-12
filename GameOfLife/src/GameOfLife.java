@@ -1,29 +1,35 @@
 
 public class GameOfLife {
 
-	private int column;
-	private int row;
+	private int columns;
+	private int rows;
+	private boolean[][] gameCells;
 	
-	public GameOfLife(int column, int row) {
-		this.column = column;
-		this.row = row;
+	public GameOfLife(int columns, int rows) {
+		this.columns = columns;
+		this.rows = rows;
+		if (rows > 0 && columns > 0) {
+			gameCells = new boolean[columns] [rows];
+		}
+		else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public int getColumns() {
-		return column;
+		return columns;
 	}
 
 	public int getRows() {
-		return row;
+		return rows;
 	}
 
-	public boolean isAlive(int column, int row) {
-		
-		return false;
+	public boolean isAlive(int columns, int rows) {			
+		return gameCells[columns][rows];
 	}
 
 
-	public int getNeighbourCount(int column, int row) {
+	public int getNeighbourCount(int columns, int rows) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -33,7 +39,7 @@ public class GameOfLife {
 		
 	}
 
-	public void setAlive(int column, int row, boolean b) {
+	public void setAlive(int columns, int rows, boolean b) {
 		// TODO Auto-generated method stub
 		
 	}
