@@ -24,8 +24,13 @@ public class GameOfLife {
 		return rows;
 	}
 
-	public boolean isAlive(int columns, int rows) {			
-		return gameCells[columns][rows];
+	public boolean isAlive(int columnsBound, int rowsBound) {	
+		if((columns < 0 || rows < 0) || (columns < columnsBound || rows < rowsBound)){
+			return false;
+		}
+		else {
+			return gameCells[columns][rows];
+		}
 	}
 
 
@@ -33,6 +38,7 @@ public class GameOfLife {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 
 	public void calculateNextGeneration() {
 		// TODO Auto-generated method stub
