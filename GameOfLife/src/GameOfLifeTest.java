@@ -60,7 +60,7 @@ public class GameOfLifeTest extends TestCase {
 
         GameOfLife game = createGlider();
 
-		//check if the neighbour count is correct... nothing else will work if this method does return the right answers
+		//check if the neighbour count is correct... nothing else will work if this method does not return the right answers
 		assertEquals(1 , game.getNeighbourCount(0,1));
 		assertEquals(2 , game.getNeighbourCount(0,2));
 		assertEquals(0 , game.getNeighbourCount(0,4));
