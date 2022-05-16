@@ -1,15 +1,15 @@
 
 public class GameOfLife {
 
-	private int columns;
-	private int rows;
+	private int gameRows;
+	private int gameColumns;
 	private boolean[][] gameCells;
 	
-	public GameOfLife(int columns, int rows) {
-		this.columns = columns;
-		this.rows = rows;
+	public GameOfLife(int rows, int columns) {
+		this.gameRows = rows;
+		this.gameColumns = columns;
 		if (rows > 0 && columns > 0) {
-			gameCells = new boolean[columns] [rows];
+			gameCells = new boolean[rows] [columns];
 		}
 		else {
 			throw new IllegalArgumentException();
@@ -17,25 +17,30 @@ public class GameOfLife {
 	}
 
 	public int getColumns() {
-		return columns;
+		return gameColumns;
 	}
 
 	public int getRows() {
-		return rows;
+		return gameRows;
 	}
 
-	public boolean isAlive(int columnsBound, int rowsBound) {	
-		if((columns < 0 || rows < 0) || (columns < columnsBound || rows < rowsBound)){
+	public boolean isAlive(int rows, int columns) {	
+		if((rows > gameRows || columns > gameColumns) || (rows < 0 || columns < 0)) {
 			return false;
 		}
 		else {
-			return gameCells[columns][rows];
+			return gameCells[gameRows][gameColumns];
 		}
 	}
 
 
-	public int getNeighbourCount(int columns, int rows) {
-		// TODO Auto-generated method stub
+	public int getNeighbourCount(int rows, int columns) {
+		int aliveNeighbours = 0;
+        for (int i = 0; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+            	
+            }
+        }
 		return 0;
 	}
 	
@@ -45,9 +50,11 @@ public class GameOfLife {
 		
 	}
 
-	public void setAlive(int columns, int rows, boolean b) {
-		// TODO Auto-generated method stub
-		
+	public void setAlive(int rows, int columns, boolean b) {
+		if((rows < 0 || columns < 0) || (rows > gameRows || columns > gameColumns)){}
+		else {
+			gameCells[rows][columns] = b;
+		}
 	}
 
 }
