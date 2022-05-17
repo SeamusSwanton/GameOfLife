@@ -8,7 +8,7 @@ public class GameOfLife {
 	public GameOfLife(int rows, int columns) {
 		this.gameRows = rows;
 		this.gameColumns = columns;
-		if (columns > 0 && rows > 0) {
+		if (rows > 0 && columns > 0) {
 			gameCells = new boolean[rows] [columns];
 		}
 		else {
@@ -16,16 +16,19 @@ public class GameOfLife {
 		}
 	}
 
+
+
 	public int getRows() {
 		return gameRows;
 	}
+
 
 	public int getColumns() {
 		return gameColumns;
 	}
 
-	public boolean isAlive(int rowsBound, int columnsBound) {	
-		if((rowsBound < 0 || columnsBound < 0) || (gameRows < rowsBound || gameColumns < columnsBound)){
+	public boolean isAlive(int rows, int columns) {	
+		if((rows > gameRows || columns > gameColumns) || (rows < 0 || columns < 0)) {
 			return false;
 		}
 		else {
@@ -35,29 +38,35 @@ public class GameOfLife {
 
 
 	public int getNeighbourCount(int rows, int columns) {
-		int neighbourCount = 0;
-		
-		for (int i = rows - 1; i <= rows + 1; i++) {
-			for(int j = columns - 1; j <= columns + 1; j++) {
-					if((i < 0 || j < 0) || (gameRows < i || gameColumns < j) || gameCells[i][j] == false || gameCells[i][j] == gameCells[rows][columns]){
-						break;
-					}
-					else {
-						neighbourCount++;
-					}
-			}
-		}
-		return neighbourCount;
+		int aliveNeighbours = 0;
+
+		for(int i = rows - 1; i <= rows+1; i++){
+	        for(int j = columns - 1; j <= columns + 1; j++){
+	            if((i == rows && j == columns) || (i<0 || j<0) || (i >= gameRows || j >= gameColumns)){
+	                continue;
+	            }
+	            if(gameCells[i][j] == true){
+	            	aliveNeighbours++;
+	            }
+	        }
+	    }
+	    return aliveNeighbours;
 	}
 	
 
 	public void calculateNextGeneration() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	public void setAlive(int rows, int columns, boolean b) {
-		gameCells[rows][columns] = b;
+
+		if((rows < 0 || columns < 0) || (rows > gameRows || columns > gameColumns)){
+			
+		}
+		else {
+			gameCells[rows][columns] = b;
+		}
 	}
 
 }
